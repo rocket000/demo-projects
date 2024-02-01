@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/css/home.css">
+<!-- container for tasks -->
+<div class="container rounded bg-white shadow p-3 mb-5" id="box">
+    <!-- input to add tasks -->
+    <div id="add-task-form" class="rounded bg-blue shadow p-3 mb-5">
+        <form action="/create-task" method="POST" >
+            <div class="form-group">
+                <label for="task">Task Name</label>
+                <input type="text" class="form-control" id="task" name="task" placeholder="Workout, Read Book, Study...." required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="What you want to achieve when you finish this task" required>
+            </div>
+            <div class="form-group ">
+                <label for="frequency">Frequency</label>
+                <select id="frequency" class="form-control" name="frequency">
+                    <option selected>Everyday</option>
+                    <option>Alternate day</option>
+                    <option>Once a week</option>
+                </select>
+            </div>
+                
+            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>Create task</button>
+            <button type="button" class="btn btn-danger" id="remove-task"><i class="fa fa-times"></i>cancel</button>
+    
+        </form>
+    </div>
+    
+        <button class="btn btn-success" id="btn-add-task"><i class="fa fa-plus"></i> Add New Task</button>
+        <a class="btn btn-primary" href="/details" role="button" id="btn-streak"><i class="fa fa-check"></i>Show how I did!</a>
+
+    <!-- list for tasks -->
+    <div>
+        <ul class="list-group" id="tasks">
+            <%for(let i of task_list){%>
+            <li class="list-group-item list-group-item-success task">
+                <div class="task-info">
+                    <span id="task-name"><h4><%= i.task %></h4> </span>
+                    <div>
+                        <form action="/details/update-task/?id=<%=i._id%>&day=one&val=<%=i.days.one%>" method="POST" id="streak-container">
+                            <button class="btn btn-change-status" type="submit"><%=i.days.one%></button>
+                        </form>
+                        <a class="btn btn-danger" href="/delete-task/?id=<%=i._id%>">
+                            <i class="fa fa-times"></i> Remove
+                        </a>
+                    </div>
+                    
+                </div>
+                <div class="row task-streak">
+                    <p class="col-lg-3"><%=i.description%></p>
+                    <p class="col-lg-3">Streak :<%=i.streak%>/7</p>
+                    <p class="col-lg-3"><%=i.frequency%></p>
+                </div>        
+            </li>
+            <%}%>
+          </ul>
+    </div>
+
+</div>
+<script  type="text/javascript" src="/js/home.js"></script>

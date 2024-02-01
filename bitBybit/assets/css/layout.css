@@ -1,0 +1,13 @@
+/* making body margin 0 */
+body{
+    margin: 0;
+    text-align: center;
+    background-color: ivory;
+    height: -webkit-fill-available;
+}
+
+.list-group-item-success {
+    color: #0963c3;
+    background-color: #b3d8ff;
+}
+
