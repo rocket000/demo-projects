@@ -1,0 +1,79 @@
+.app-header {
+    text-align: center;
+    background-color: #E1F5FE;
+    border: solid 1px white;
+}
+
+.upload-block {
+    padding: 50px;
+    font-size: x-large;
+    align-items: center;
+}
+
+body {
+    background-color: #B2EBF2;
+    height: -webkit-fill-available;
+    font-family: Helvetica;
+}
+
+.input_container {
+    border: 1px solid #e5e5e5;
+}
+
+input[type=file]::file-selector-button {
+    background-color: #fff;
+    color: #000;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    margin-right: 20px;
+    transition: .5s;
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: #eee;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+}
+
+#csvFile {
+    background-color: #E1F5FE;
+    border-radius: 6px;
+}
+
+.upload-btn {
+    border-radius: 6px;
+    height: 35px;
+    width: 70px;
+    background-color: #E1F5FE;
+}
+
+.upload-btn:hover{
+    background-color: #eee;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  #searchInput{
+    padding: 10px;
+    border-radius: 5px;
+    width: 25%;
+    margin-bottom: 10px;
+  }
