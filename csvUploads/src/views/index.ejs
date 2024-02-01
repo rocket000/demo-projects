@@ -1,0 +1,78 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>CSV Upload App</title>
+</head>
+<body>
+  <h1>CSV Upload App</h1>
+  
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="csvFile">Choose a CSV file:</label>
+    <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+    <button type="submit">Upload</button>
+  </form>
+  
+  <h2>Uploaded Files</h2>
+  <ul>
+    <% files.forEach((file, index) => { %>
+      <li>
+        <a href="/data/<%= index %>"><%= file.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+
+  <% if (selectedFile) { %>
+    <h2>Data from <%= selectedFile.name %></h2>
+
+    <input type="text" id="searchInput" placeholder="Search by column...">
+    
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <% selectedFile.headers.forEach(header => { %>
+            <th><%= header %></th>
+          <% }); %>
+        </tr>
+      </thead>
+      <tbody>
+        <% selectedFile.data.forEach(row => { %>
+          <tr>
+            <% Object.values(row).forEach(value => { %>
+              <td><%= value %></td>
+            <% }); %>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <script>
+      const searchInput = document.getElementById('searchInput');
+      const dataTable = document.getElementById('dataTable');
+
+      searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+
+        Array.from(dataTable.getElementsByTagName('tr')).forEach(row => {
+          const cells = row.getElementsByTagName('td');
+          let rowMatchesSearch = false;
+
+          for (let i = 0; i < cells.length; i++) {
+            const cellValue = cells[i].textContent.toLowerCase();
+
+            if (cellValue.includes(searchValue)) {
+              rowMatchesSearch = true;
+              break;
+            }
+          }
+
+          row.style.display = rowMatchesSearch ? '' : 'none';
+        });
+      });
+    </script>
+  <% } %>
+</body>
+</html>
